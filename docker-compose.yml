@@ -1,11 +1,10 @@
 ---
-version: '3.8'
+version: '2'
 
 services:
   python:
     image: python:3.9.0b1-alpine3.11
     hostname: KanbanDashboard
     container_name: kanbanDashboard
-    command:
     volumes:
       - ./:/docker/

@@ -3,8 +3,32 @@ version: '2'
 
 services:
   python:
-    image: python:3.9.0b1-alpine3.11
+    build: ./backend
+    image: python-kanban
     hostname: KanbanDashboard
     container_name: kanbanDashboard
     volumes:
-      - ./:/docker/
+      - ./backend:/KanbanDashboard/app/
+    networks:
+      kanban-net:
+        ipv4_address: 172.100.23.2
+  db:
+    image: mongo:4.2.6
+    hostname: Kanban - MongoDB
+    container_name: kanbanDB
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: qwe123
+      MONGO_INITDB_DATABASE: kanban
+    volumes:
+    - ./db:/etc/mongo
+    networks:
+      kanban-net:
+        ipv4_address: 172.100.23.3
+networks:
+  kanban-net:
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.100.23.0/24

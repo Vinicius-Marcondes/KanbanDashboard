@@ -1,0 +1,8 @@
+flask
+flask-marshmallow
+flask-Migrate
+flask-SQLAlchemy
+marshmallow
+marshmallow-sqlalchemy
+pip
+python-dotenv

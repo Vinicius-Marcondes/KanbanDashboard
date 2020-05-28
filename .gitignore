@@ -1,5 +1,9 @@
-# Created by .ignore support plugin (hsz.mobi)
+# Folders
 env/
-backend/__pycache__/
+API/__pycache__/
 .idea
-
+venv/
+migrations
+database/postgres/
+# Files
+test.http

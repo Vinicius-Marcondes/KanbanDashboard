@@ -2,30 +2,36 @@
 version: '2'
 
 services:
-  python:
-    build: ./backend
+  app:
+    build: API
     image: python-kanban
     hostname: KanbanDashboard
     container_name: kanbanDashboard
+    restart: unless-stopped
+    environment:
+      FLASK_APP: API
+      FLASK_ENV: development
+      FLASK_DEBUG: "True"
     volumes:
-      - ./backend:/KanbanDashboard/app/
+      - ./API:/KanbanDashboard/API/
     networks:
       kanban-net:
         ipv4_address: 172.100.23.2
-  db:
-    image: mongo:4.2.6
-    hostname: Kanban - MongoDB
+  database:
+    image: postgres:12.3-alpine
+    hostname: Kanban - PostgresDB
     container_name: kanbanDB
-    restart: always
+    restart: unless-stopped
     environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: qwe123
-      MONGO_INITDB_DATABASE: kanban
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: qwe123
+      POSTGRES_DB: kanban
     volumes:
-    - ./db:/etc/mongo
+    - ./database/postgres:/var/lib/postgresql/data
     networks:
       kanban-net:
         ipv4_address: 172.100.23.3
+
 networks:
   kanban-net:
     ipam:

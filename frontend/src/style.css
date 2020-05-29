@@ -56,7 +56,7 @@ body
     display:flex;
     flex-direction: column;
     width: 75%;
-    height: 50%;
+    height: 55%;
     /*border:2px solid blue;*/
     align-items: center;
     margin-right: 50px;
@@ -90,16 +90,31 @@ input
     border-color:transparent;
     text-align: center;
     font-size:0.8em;
-    background-image:url(../images/icons/favicon.ico);
-    background-repeat: no-repeat;
-    background-size: 18px;
-    background-position-x: 12px;
-    background-position-y: 8px;
 }
 
 input,button:focus
 {
     outline: none;
+}
+
+#Email
+{
+    background-image:url(../images/icons/favicon.ico);
+    background-repeat: no-repeat;
+    background-size: 18px;
+    background-position-x: 20px;
+    background-position-y: 9px;
+    transition: background-position 0.5s;
+}
+
+#Password
+{
+    background-image:url(../images/icons/security.png);
+    background-repeat: no-repeat;
+    background-size: 16px;
+    background-position-x: 20px;
+    background-position-y: 9px;
+    transition: background-position 0.5s;
 }
 
 button
@@ -112,7 +127,7 @@ button
     font-family: Poppins,sans-serif;
     color:white;
     font-weight:bolder;
-    transition: background 0.5s;
+    transition: background 0.4s;
 }
 
 button:hover
@@ -154,5 +169,14 @@ h3
 #comum:hover
 {
     width:90%;
+}
+
+#Email:active,
+#Email:focus,
+#Password:active,
+#Password:focus
+{
+    background-position: 10px 9px;
+    filter: invert(59%) sepia(48%) saturate(459%) hue-rotate(65deg) brightness(102%) contrast(92%);
 }
 

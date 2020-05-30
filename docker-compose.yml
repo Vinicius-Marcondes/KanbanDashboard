@@ -4,9 +4,9 @@ version: '2'
 services:
   app:
     build: API
-    image: python-kanban
-    hostname: KanbanDashboard
-    container_name: kanbanDashboard
+    image: kanban_dashboard:0.1
+    hostname: KanbanAPI
+    container_name: kanban_API
     restart: unless-stopped
     environment:
       FLASK_APP: API
@@ -20,7 +20,7 @@ services:
   database:
     image: postgres:12.3-alpine
     hostname: Kanban - PostgresDB
-    container_name: kanbanDB
+    container_name: kanban_DB
     restart: unless-stopped
     environment:
       POSTGRES_USER: root

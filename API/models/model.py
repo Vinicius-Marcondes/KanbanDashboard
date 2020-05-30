@@ -10,5 +10,5 @@ def configure(app):
 
 class Person(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    user = db.Column(db.String(255))
+    name = db.Column(db.String(255))
     email = db.Column(db.String(255))

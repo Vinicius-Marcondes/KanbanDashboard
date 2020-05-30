@@ -1,6 +1,6 @@
 from flask import Blueprint, current_app, request
-from .model import Person
-from .serealizer import PersonSchema
+from API.models.model import Person
+from API.schemas.serealizer import PersonSchema
 
 
 bp_person = Blueprint('person', __name__)
@@ -8,16 +8,18 @@ bp_person = Blueprint('person', __name__)
 
 @bp_person.route('/insert', methods=['POST'])
 def insert():
-    ps = PersonSchema
-    print(request.json)
-    return {}
+    ps = PersonSchema()
+    person = ps.load(request.json)
+
+    current_app.db.session.add(person)
+    current_app.db.session.commit()
+    return ps.jsonify(person), 201
 
 
 @bp_person.route('/show', methods=['GET'])
 def show():
-    ps = PersonSchema(many=True)
     result = Person.query.all()
-    return ps.jsonify(result), 200
+    return PersonSchema(many=True).jsonify(result), 200
 
 
 @bp_person.route('/update', methods=['POST'])

@@ -1,20 +1,28 @@
 FROM python:3.9.0b1-alpine3.11
 
-ENV FLASK_APP=API
-ENV FLASK_ENV=development
-ENV FLASK_DEBUG=True
+ENV FLASK_APP=app.py FLASK_ENV=development FLASK_DEBUG=True
 
-RUN apk add --no-cache gcc sudo bash
-RUN adduser -D -s /bin/bash -h /KanbanDashboard -g '' python
+RUN RUN rm -rf /var/cache/apk/* && \
+    apk update && \
+    apk add make && \
+    apk add build-base && \
+    apk add gcc && \
+    apk add python3-dev && \
+    apk add libffi-dev && \
+    apk add musl-dev && \
+    apk add openssl-dev && \
+    apk del build-base && \
+    rm -rf /var/cache/apk/*
 
-WORKDIR /KanbanDashboard/
-ADD . API
+ADD API /API
 
-COPY requirements.txt requirements.txt
+WORKDIR /API
+
+COPY requirements requirements.txt
 
 RUN pip3 install -r requirements.txt
 RUN flask db init && \
     flask db migrate && \
     flask db upgrade
 
-CMD ["flask","run","-p 80","--host=0.0.0.0"]
+CMD ["flask","run","--host=0.0.0.0"]

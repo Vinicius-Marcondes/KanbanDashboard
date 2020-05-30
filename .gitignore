@@ -3,7 +3,21 @@ env/
 API/__pycache__/
 .idea
 venv/
-migrations
+API/migrations
 database/postgres/
 # Files
 test.http
+build/
+__pycache__/
+*.pytest_cache/
+local_settings.py
+*.py[cod]
+*.swp
+*.log
+.DS_Store
+.env
+.venv
+*.eggs
+*.egg-info
+.vscode
+.cache/

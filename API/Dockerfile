@@ -1,8 +1,8 @@
 FROM python:3.9.0b1-alpine3.11
 
-ENV FLASK_APP=app.py FLASK_ENV=development FLASK_DEBUG=True
+ENV HOME=/home/api FLASK_APP=app.py FLASK_ENV=development FLASK_DEBUG=True
 
-RUN RUN rm -rf /var/cache/apk/* && \
+RUN rm -rf /var/cache/apk/* && \
     apk update && \
     apk add make && \
     apk add build-base && \
@@ -14,15 +14,14 @@ RUN RUN rm -rf /var/cache/apk/* && \
     apk del build-base && \
     rm -rf /var/cache/apk/*
 
-ADD API /API
+RUN adduser -D api
+USER api
+COPY --chown=api:api . $HOME/API
+WORKDIR $HOME/API
 
-WORKDIR /API
+RUN python3 -m venv venv && \
+    venv/bin/pip install --upgrade pip && \
+    venv/bin/pip install -r requirements/dev.txt
 
-COPY requirements requirements.txt
-
-RUN pip3 install -r requirements.txt
-RUN flask db init && \
-    flask db migrate && \
-    flask db upgrade
-
-CMD ["flask","run","--host=0.0.0.0"]
+EXPOSE 80
+CMD ["venv/bin/flask","run","--host=0.0.0.0"]

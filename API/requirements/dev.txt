@@ -4,7 +4,5 @@ flask-Migrate
 flask-SQLAlchemy
 marshmallow
 marshmallow-sqlalchemy
-pip
 requests
 python-dotenv
-json

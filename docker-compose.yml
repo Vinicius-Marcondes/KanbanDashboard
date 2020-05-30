@@ -9,11 +9,10 @@ services:
     container_name: kanban_API
     restart: unless-stopped
     environment:
-      FLASK_APP: API
+      FLASK_APP: app.py
       FLASK_ENV: development
       FLASK_DEBUG: "True"
-    volumes:
-      - ./API:/KanbanDashboard/API/
+      DATABASE_URL: sqlite:///tmp/crud.db
     networks:
       kanban-net:
         ipv4_address: 172.100.23.2

@@ -1,9 +1,10 @@
 # Folders
 env/
 API/__pycache__/
+database/postgres
 .idea
 venv/
-database/postgres/
+database/postgres/*
 # Files
 test.http
 build/

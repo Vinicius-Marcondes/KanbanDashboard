@@ -3,7 +3,6 @@ env/
 API/__pycache__/
 .idea
 venv/
-API/migrations
 database/postgres/
 # Files
 test.http

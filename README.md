@@ -1,5 +1,6 @@
 # KanbanDashboard
 A Kanban Dashboard using Javascript and Python as a first project to learn new technologies and as a portfolio
+![Python application](https://github.com/Vinicius-Marcondes/KanbanDashboard/workflows/Python%20application/badge.svg)
 ## Using the API
 ### Insert a user 
 Pass a json object as bellow

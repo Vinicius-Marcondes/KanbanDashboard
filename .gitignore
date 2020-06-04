@@ -5,7 +5,6 @@ database/postgres
 .idea
 venv/
 database/postgres/*
-# Files
 test.http
 build/
 __pycache__/
@@ -21,3 +20,5 @@ local_settings.py
 *.egg-info
 .vscode
 .cache/
+.coverage
+htmlcov/

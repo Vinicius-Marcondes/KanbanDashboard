@@ -2,36 +2,56 @@
 A Kanban Dashboard using Javascript and Python as a first project to learn new technologies and as a portfolio
 ## Using the API
 ### Insert a user 
-Pass a json object as bellow (Method=POST)
+Pass a json object as bellow
 ```json
 {
-  "name": "your_beautiful_name",
-  "email": "your_badass_email"
+  "username": "your_username",
+  "full_name": "your_beautiful_name",
+  "email": "your_badass_email",
+  "password": "super_secret_password",
+  "cpf": "11111111111",
+  "role": 1
 }
 ```
 
-### Deleting data from db (METHOD=GET)
-Pass to the API the ID of the item you want to delete (i.e.) "http://project_url:5000/api/delete/<id>", returns:
-```shell script
-{
-  "deleted_id": "Deleted"
-}
+### Deleting data from db 
+Pass to the API the ID of the item you want to delete
+```python3
+>>> get("project_url/api/delete/1").json()
 ```
-### Update data from db (METHOD=POST)
-Query the json with the updates passing the id of the item you want to update (i.e.) "http://project_url:5000/api/update/<id>" with this json {"name":"your_new_beautiful_name"}, returns 
+returns:
 ```json
 {
-  "id": "int",
+  "1": "Deleted"
+}
+```
+### Update data from db
+Query the json with the updates passing the id of the item you want to update
+```python3
+>>> post("project_url/api/update/1",json{"name":"your_new_beautiful_name"}).json()
+```
+returns:
+```json
+{
+  "id": "1",
   "name": "your_new_beautiful_name"
 }
 ```
-### Returning data from db (METHOD=GET)
+### Returning data from db
+```python3
+>>> get("project_url/api/show").json()
+```
+returns:
 ```json
 {
-  "id": "int",
-  "name": "your_beautiful_name",
-  "email": "your_badass_email"
+  "username": "your_username",
+  "full_name": "your_beautiful_name",
+  "email": "your_badass_email",
+  "password": "super_secret_password",
+  "cpf": "11111111111",
+  "role": 1
 }
+...
 ```
 
 ### Initializing the API:

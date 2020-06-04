@@ -1,37 +1,53 @@
 from flask import Blueprint, current_app, request, jsonify
-from API.models.model import Person
-from API.schemas.serealizer import PersonSchema
+from marshmallow import ValidationError
+
+from apps.users.models import User, Roles
+from apps.users.schemas import UserSchema
 
 
-bp_person = Blueprint('person', __name__)
+bp_user = Blueprint('user', __name__)
 
 
-@bp_person.route('/api/insert', methods=['POST'])
+@bp_user.route('/api/insert', methods=['POST'])
 def insert():
-    ps = PersonSchema()
-    person = ps.load(request.json)
-    current_app.db.session.add(person)
+    user = UserSchema()
+    try:
+        result = user.load(request.json)
+    except ValidationError as err:
+        return err.messages, 406
+    current_app.db.session.add(result)
     current_app.db.session.commit()
-    return ps.jsonify(person), 201
+    return user.jsonify(result), 201
 
 
-@bp_person.route('/api/show', methods=['GET'])
+@bp_user.route('/api/show', methods=['GET'])
 def show():
-    result = Person.query.all()
-    return PersonSchema(many=True).jsonify(result), 200
+    try:
+        result = User.query.join(Roles).filter(User.id == 2, Roles.role_id == 1)
+    except ValidationError as err:
+        return jsonify(err.messages), 404
+    return UserSchema(many=True).jsonify(result), 200
 
 
-@bp_person.route('/api/update/<key>', methods=['POST'])
+@bp_user.route('/api/update/<key>', methods=['POST'])
 def update(key: int):
-    ps = PersonSchema()
-    query = Person.query.filter(Person.id == key)
+    ps = UserSchema()
+    query = User.query.filter(User.id == key)
     query.update(request.json)
     current_app.db.session.commit()
     return ps.jsonify(query.first())
 
 
-@bp_person.route('/api/delete/<key>', methods=['GET'])
+@bp_user.route('/api/delete/<key>', methods=['GET'])
 def delete(key: int):
-    Person.query.filter(Person.id == key).delete()
+    try:
+        response = User.query.filter(User.id == key)
+        if response is not None:
+            return {'Message': 'No user found'}
+    except ValidationError as err:
+        return jsonify(err.messages)
+    # User.query.filter(User.id == key).delete()
     current_app.db.session.commit()
-    return jsonify({key: 'Deleted'})
+    return UserSchema(many=True).jsonify(response)
+
+

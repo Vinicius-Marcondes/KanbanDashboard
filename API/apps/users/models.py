@@ -1,5 +1,8 @@
-from apps.db import db
+# Python
 from datetime import datetime
+
+# Apps
+from apps.db import db
 
 
 class Roles(db.Model):

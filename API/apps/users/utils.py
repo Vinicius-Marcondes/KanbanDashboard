@@ -1,5 +1,9 @@
 from flask import jsonify
+
+# Third
 from marshmallow import ValidationError
+
+# Local
 from .models import User
 
 
@@ -10,6 +14,7 @@ def check_password_in_singup(password: str, confirm_password: str):
         return False
     if not password == confirm_password:
         return False
+    return True
 
 
 def get_user_by_id(user_id: int):

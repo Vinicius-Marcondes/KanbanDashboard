@@ -16,6 +16,8 @@ help:
 	@echo "make run"
 	@echo "       run the web application"
 
+
+
 clean:
 	find . -name '*.pyc' -exec rm --force {} +
 	find . -name '*.pyo' -exec rm --force {} +
@@ -25,6 +27,8 @@ clean-build:
 	rm --force --recursive build/
 	rm --force --recursive dist/
 	rm --force --recursive *.egg-info
+
+clean-all: clean clean-build
 
 isort:
 	sh -c "isort --skip-glob=.tox --recursive . "
@@ -40,3 +44,5 @@ run: test
 
 dependencies:
 	pip3 install -r requirements/dev.txt
+
+all: clean-all isort test

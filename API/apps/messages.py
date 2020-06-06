@@ -7,6 +7,6 @@ MSG_PASSWORD_DIDNT_MATCH = 'Password does not match'
 MSG_FIELD_REQUIRED = 'Field required'
 
 MSG_RESOURCE_CREATED = '{} created.'
-MSG_RESOURCE_FETCHED_PAGINATED = 'List {} paginated'
+MSG_RESOURCE_FETCHED_PAGINATED = 'List paginated {}'
 
 MSG_PERMISSION_DENIED = 'Access denied.'

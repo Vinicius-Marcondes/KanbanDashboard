@@ -1,12 +1,3 @@
-# from flask_sqlalchemy import SQLAlchemy
-# Apps
-# Apps
-# Apps
-# Apps
-# Apps
-# Apps
-# Apps
-# Apps
 from apps.users.models import User
 
 

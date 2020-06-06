@@ -21,10 +21,10 @@ class UserMixin(db.Model):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
     role = db.Column(db.Integer, db.ForeignKey('roles.role_id'))
-    username = db.Column(db.String(255), nullable=False, )
+    username = db.Column(db.String(255), nullable=False, unique=True)
     email = db.Column(db.String(255), unique=True, nullable=False)
     password = db.Column(db.String(255), nullable=False)
-    active = db.Column(db.Boolean, default=False)
+    active = db.Column(db.Boolean, default=True)
     date_created = db.Column(db.DateTime, nullable=False,
                              default=datetime.utcnow())
 
@@ -37,4 +37,4 @@ class UserMixin(db.Model):
 
 class User(UserMixin):
     full_name = db.Column(db.String(255), nullable=False)
-    cpf = db.Column(db.String(11))
+    cpf = db.Column(db.String(11), unique=True, nullable=False)

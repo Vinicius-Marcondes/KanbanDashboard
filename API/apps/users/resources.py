@@ -26,7 +26,7 @@ from .schemas import UserRegistrationSchema, UserSchema
 from .utils import check_password_in_singup
 
 
-class SingUp(Resource):
+class SignUp(Resource):
 
     def post(self, *args, **kwargs):
         req_data = request.json or None

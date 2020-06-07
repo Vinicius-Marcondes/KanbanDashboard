@@ -57,7 +57,8 @@ def resp_does_not_exist(resource: str, description: str) -> dict:
 
     response = jsonify({
         'resource': resource,
-        'message': MSG_DOES_NOT_EXIST.format(description)
+        'message': MSG_DOES_NOT_EXIST.format(description),
+        'status_code': 404
     })
 
     response.status_code = 404

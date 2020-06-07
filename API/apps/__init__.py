@@ -19,7 +19,4 @@ def create_app(config_name):
     # Enable database migration
     Migrate(app, app.db)
 
-    # from views.person import bp_user
-    # app.register_blueprint(bp_user)
-
     return app

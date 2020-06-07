@@ -1,10 +1,15 @@
-from flask import jsonify
+from apps.responses import resp_does_not_exist, resp_exception, resp_ok
+from apps.messages import MSG_RESOURCE_FETCHED
+from flask import jsonify, json
 
 # Third
 from marshmallow import ValidationError
 
 # Local
+from sqlalchemy.orm.exc import NoResultFound
+
 from .models import User
+from .schemas import UserSchema
 
 
 def check_password_in_singup(password: str, confirm_password: str):
@@ -18,10 +23,24 @@ def check_password_in_singup(password: str, confirm_password: str):
 
 
 def get_user_by_id(user_id: int):
+    """
+    Return a user based on the filter(user.id == id_user)
+    :param user_id: id of the user you want to find
+    :return: user's data (json)
+    """
+
     try:
-        return User.objects.get(id == user_id)
+        user = User.query.filter(User.id == user_id)
+        if not user:
+            return resp_does_not_exist('User', "user")
+
     except ValidationError as err:
-        return jsonify(err)
+        return err.__dict__
+
+    except Exception as err:
+        return resp_exception('Users', description=err.__str__())
+
+    return UserSchema(many=True).dump(user)
 
 
 def exists_email_in_user(email: str, instance=None):

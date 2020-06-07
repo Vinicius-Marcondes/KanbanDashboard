@@ -1,21 +1,25 @@
 from flask import request
+from marshmallow import ValidationError
 
 from sqlalchemy.exc import NoReferencedColumnError
 from flask_restful import Resource
+from apps.users.utils import get_user_by_id
+from apps.messages import MSG_RESOURCE_FETCHED_PAGINATED, MSG_RESOURCE_FETCHED
+from apps.responses import resp_ok, resp_exception, resp_does_not_exist
+from sqlalchemy.orm.exc import NoResultFound
 
-from apps.messages import MSG_RESOURCE_FETCHED_PAGINATED
-from apps.responses import resp_ok, resp_exception
 from .models import User
 from .schemas import UserSchema
 
 
 class AdminUserPageList(Resource):
-    def get(self, page_id=1):
+    def get(self, page_id: int = 1) -> dict:
         """
         Lists the users from the db
-        :param page_id: id of the page you want to list (warning: it's directly related to page_size), page_size: the size of the page you want to show
-        :return: list of users (json)
+        :param page_id: int
+        :return: dict
         """
+
         schema = UserSchema(many=True)
         page_size = 10
 
@@ -45,3 +49,15 @@ class AdminUserPageList(Resource):
         result = schema.dump(users.items)
 
         return resp_ok('User', MSG_RESOURCE_FETCHED_PAGINATED.format('users'), data=result, **extras)
+
+
+class AdminUserResource(Resource):
+    def get(self, user_id: int) -> dict:
+        result = get_user_by_id(user_id)
+
+        return resp_ok('User', MSG_RESOURCE_FETCHED.format('User'), data=result)
+
+
+
+
+

@@ -1,5 +1,6 @@
 # Third
 from flask_marshmallow import Marshmallow
+from marshmallow import fields
 
 # Apps
 from apps.users import models
@@ -21,3 +22,9 @@ class UserSchema(ma.SQLAlchemyAutoSchema):
     class Meta:
         model = models.User
         include_fk = True
+
+
+class UserUpdateSchema(ma.Schema):
+    class Meta:
+        include_fk = True
+        fields = ("full_name", "username", "password", "confirm_password", "email", "cpf", "active", "role")

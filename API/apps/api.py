@@ -20,7 +20,6 @@ def configure_api(app):
     api.add_resource(Index, '/')
     api.add_resource(SignUp, '/signup/api/users')
     api.add_resource(AdminUserPageList, '/admin/api/users/page/<int:page_id>')
-    # api.add_resource(AdminUserResource, '/admin/api/users/update/<int:user_id>')
     api.add_resource(AdminUserResource, '/admin/api/users/<int:user_id>')
 
     api.init_app(app)

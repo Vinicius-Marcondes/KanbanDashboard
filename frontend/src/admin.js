@@ -1,4 +1,5 @@
 let refresh = document.getElementById('refresh')
+let createUser = document.getElementById('create')
 let tbody = document.querySelector('tbody')
 
 function loadUsers()

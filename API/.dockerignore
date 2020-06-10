@@ -13,7 +13,6 @@
 __pycache__/
 *.pytest_cache/
 .venv
-env/
 venv/
 .DS_Store
 *.eggs

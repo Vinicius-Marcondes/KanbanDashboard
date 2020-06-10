@@ -9,10 +9,13 @@ services:
     container_name: kanban_API
     restart: unless-stopped
     environment:
-      FLASK_APP: __init__.py
+      FLASK_APP: application.py
       FLASK_ENV: development
-      FLASK_DEBUG: "True"
-      DATABASE_URL: sqlite:///tmp/crud.db
+      DEBUG: "True"
+      APP_PORT: 5000
+      POSTGRES_URI: postgresql://root:qwe123@172.100.23.3/kanban
+    ports:
+      - 80:5000
     networks:
       kanban-net:
         ipv4_address: 172.100.23.2

@@ -1,5 +1,24 @@
-# Created by .ignore support plugin (hsz.mobi)
+# Folders
 env/
-backend/__pycache__/
+API/__pycache__/
+database/postgres
 .idea
-
+venv/
+database/postgres/*
+test.http
+build/
+__pycache__/
+*.pytest_cache/
+local_settings.py
+*.py[cod]
+*.swp
+*.log
+.DS_Store
+.venv
+*.eggs
+*.egg-info
+.vscode
+.cache/
+.coverage
+htmlcov/
+*.http

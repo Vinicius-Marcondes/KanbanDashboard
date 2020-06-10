@@ -1,7 +1,7 @@
 let refresh = document.getElementById('refresh')
 let tbody = document.querySelector('tbody')
 
-refresh.addEventListener("click",function()
+function loadUsers()
 {
     fetch('https://reqres.in/api/users?page=2')
         .then(function(response) {
@@ -80,7 +80,7 @@ refresh.addEventListener("click",function()
                 tr.appendChild(tdbutton)
             })
         })
-})
+}
 
 function editUser(id)
 {

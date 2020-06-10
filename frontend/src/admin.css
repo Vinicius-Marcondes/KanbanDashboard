@@ -177,6 +177,10 @@ td
     background-color: #54ff42;
     border: none;
     transition: background-color 1s;
+    display:none;
+    height: 30px;
+    width: 30px;
+    padding: 0;
 }
 
 .edit
@@ -184,6 +188,10 @@ td
     background-color: #3fdaff;
     border: none;
     transition: background-color 1s;
+    height: 30px;
+    width: 30px;
+    padding: 0;
+    margin-left: 5px;
 }
 
 .exclude
@@ -191,12 +199,17 @@ td
     background-color: #ff3d3a;
     border: none;
     transition: background-color 1s;
+    height: 30px;
+    width: 30px;
+    padding: 0;
+    margin-left: 5px;
 }
 
-svg
+img
 {
-    fill:white;
-    padding: 3px;
+    height: 24px;
+    width: 24px;
+    margin:0;
 }
 
 .edit:hover,.exclude:hover,.Save:hover

@@ -5,7 +5,7 @@ from sqlalchemy.exc import NoReferencedColumnError, IntegrityError
 from flask_restful import Resource
 from apps.users.utils import get_user_by_id, exists_email_in_user, check_password_in_singup
 from apps.messages import MSG_RESOURCE_FETCHED_PAGINATED, MSG_RESOURCE_FETCHED, MSG_NO_DATA, MSG_ALREADY_EXISTS, \
-    MSG_RESOURCE_UPDATED, MSG_PASSWORD_DIDNT_MATCH
+    MSG_RESOURCE_UPDATED, MSG_PASSWORD_DIDNT_MATCH, MSG_RESOURCE_DELETED
 from apps.responses import resp_ok, resp_exception, resp_does_not_exist, resp_invalid_data, resp_already_exists
 
 from .models import User
@@ -57,9 +57,9 @@ class AdminUserResource(Resource):
         try:
             query = get_user_by_id(user_id)
             result = UserSchema(many=True).dump(query)
-        except NoReferencedColumnError as err:
-            return err.__dict__
-                # resp_does_not_exist('User', "user")
+
+        except Exception:
+            return resp_does_not_exist('User', "user")
 
         return resp_ok('User', MSG_RESOURCE_FETCHED.format('User'), data=result)
 
@@ -107,17 +107,15 @@ class AdminUserResource(Resource):
     def delete(self, user_id):
 
         schema = UserSchema()
+        try:
+            query = User.query.filter(User.id == user_id).first_or_404()
 
-        query, error = User.query.filter(User.id == user_id).first_or_404()
+        except Exception as err:
+            return resp_exception('Users', description=err.__str__())
 
-        if error:
-            print(query)
-            print(error)
-            return error
-        # user = schema.dump(query)
+        user = schema.dump(query)
 
         current_app.db.session.delete(query)
         current_app.db.session.commit()
 
-        return 0
-
+        return resp_ok('Users', MSG_RESOURCE_DELETED.format('User'), data=user)

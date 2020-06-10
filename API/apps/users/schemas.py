@@ -1,7 +1,5 @@
 # Third
 from flask_marshmallow import Marshmallow
-from marshmallow import fields
-
 # Apps
 from apps.users import models
 

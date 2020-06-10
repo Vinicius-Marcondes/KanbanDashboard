@@ -10,5 +10,6 @@ MSG_RESOURCE_CREATED = '{} created'
 MSG_RESOURCE_FETCHED_PAGINATED = 'List paginated {}'
 MSG_RESOURCE_FETCHED = '{} found'
 MSG_RESOURCE_UPDATED = '{} updated'
+MSG_RESOURCE_DELETED = '{} deleted'
 
 MSG_PERMISSION_DENIED = 'Access denied'

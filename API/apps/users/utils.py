@@ -1,12 +1,10 @@
-from apps.responses import resp_does_not_exist, resp_exception, resp_ok
-from apps.messages import MSG_RESOURCE_FETCHED
-from flask import jsonify, json
+from apps.responses import resp_exception
+from flask import jsonify
 
 # Third
 from marshmallow import ValidationError
 
 # Local
-from sqlalchemy.exc import NoReferencedColumnError
 from sqlalchemy.orm.exc import MultipleResultsFound
 
 from .models import User
@@ -34,7 +32,7 @@ def get_user_by_id(user_id: int):
         user = User.query.filter(User.id == user_id)
         result = UserSchema(many=True).dump(user)
         if not result:
-            raise NoReferencedColumnError
+            raise Exception
 
     except ValidationError as err:
         return err.__dict__

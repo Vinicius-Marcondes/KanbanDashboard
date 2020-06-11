@@ -9,10 +9,12 @@ on:
 jobs:
 
   build:
-
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: API
 
     steps:
     - uses: actions/checkout@v2
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag kanban_API:$(date +%s)
+      run: docker build . --file Dockerfile --tag kanban_api:$(date +%s)

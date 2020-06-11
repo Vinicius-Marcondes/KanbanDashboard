@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin</title>
+    <link rel="stylesheet" href="src/admin.css">
+</head>
+<body onload="loadUsers()">
+    <header>
+        <div class="logo">
+            <img src="images/2.png" alt="logo">
+        </div>
+        <div class="title">
+            <h1>Administration</h1>
+        </div>
+        <div class="home">
+            <a href="https://">Home</a>
+        </div>
+        <div class="exit">
+            <a href="https://">Exit</a>
+        </div>
+    </header>
+    <section>
+        <h1 class="User">Manage Users</h1>
+        <div class="buttons">
+            <button class="create" id="create" href="#">Create User</button>
+            <button class="refresh" id="refresh">Refresh</button>
+        </div>
+        <table rules="groups">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>User Name</th>
+                    <th>Email</th>
+                    <th>Title</th>
+                    <th>Option</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </section>
+    <script src="src/admin.js"></script>
+</body>
+</html>

@@ -12,4 +12,7 @@ MSG_RESOURCE_FETCHED = '{} found'
 MSG_RESOURCE_UPDATED = '{} updated'
 MSG_RESOURCE_DELETED = '{} deleted'
 
+MSG_TOKEN_CREATED = 'Token created'
+MSG_INVALID_CREDENTIALS = 'Invalid credentials'
+MSG_TOKEN_EXPIRED = 'Token has expired'
 MSG_PERMISSION_DENIED = 'Access denied'

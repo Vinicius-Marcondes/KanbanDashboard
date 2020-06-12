@@ -43,7 +43,7 @@ def get_user_by_id(user_id: int):
     return user
 
 
-def exists_email_in_user(email: str, instance=None):
+def exists_email_in_user(email: str):
     user = None
 
     try:
@@ -61,6 +61,6 @@ def exists_email_in_user(email: str, instance=None):
 
 def get_user_by_email(email: str):
     try:
-        return User.objects.get(email == email)
+        return User.query.filter(User.email == email).first_or_404()
     except ValidationError as err:
         return jsonify(err)

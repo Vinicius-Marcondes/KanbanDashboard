@@ -4,6 +4,7 @@ from flask_restful import Api, Resource
 # Apps
 from apps.users.resources import SignUp
 from apps.users.resources_admin import AdminUserPageList, AdminUserResource
+from apps.auth.resources import AuthResource
 
 
 class Index(Resource):
@@ -18,6 +19,7 @@ api = Api()
 
 def configure_api(app):
     api.add_resource(Index, '/')
+    api.add_resource(AuthResource, '/api/auth')
     api.add_resource(SignUp, '/signup/api/users')
     api.add_resource(AdminUserPageList, '/admin/api/users/page/<int:page_id>')
     api.add_resource(AdminUserResource, '/admin/api/users/<int:user_id>')

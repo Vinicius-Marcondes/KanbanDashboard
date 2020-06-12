@@ -1,5 +1,6 @@
 # Python
 from os import getenv
+from datetime import timedelta
 
 
 class Config:
@@ -8,6 +9,8 @@ class Config:
     DEBUG = eval(getenv('DEBUG').title()) or True
     SQLALCHEMY_DATABASE_URI = getenv('POSTGRES_URI')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+    JWT_ACCESS_TOKEN_EXPIRES = timedelta(minutes=int(getenv('JWT_ACCESS_TOKEN_EXPIRES')))
+    JWT_REFRESH_TOKEN_EXPIRES = timedelta(days=int(getenv('JWT_REFRESH_TOKEN_EXPIRES')))
 
 
 class DevelopmentConfig(Config):

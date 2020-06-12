@@ -3,6 +3,7 @@ from flask_migrate import Migrate
 from config import config
 from .api import configure_api
 from .db import configure_db
+from .jwt import configure_jwt
 from .users.schemas import configure_ma
 
 
@@ -14,9 +15,11 @@ def create_app(config_name):
     configure_db(app)
     # Initialize marshmallow_sqlalchemy
     configure_ma(app)
-    # Initialize api config
-    configure_api(app)
     # Enable database migration
     Migrate(app, app.db)
+    # Config JWT
+    configure_jwt(app)
+    # Initialize api config
+    configure_api(app)
 
     return app

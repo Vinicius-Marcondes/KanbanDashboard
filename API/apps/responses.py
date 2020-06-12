@@ -1,6 +1,6 @@
 from flask import jsonify
 
-from .messages import (  # MSG_NO_DATA; MSG_PASSWORD_DIDNT_MATCH,; MSG_RESOURCE_CREATED
+from .messages import (
     MSG_ALREADY_EXISTS,
     MSG_DOES_NOT_EXIST,
     MSG_EXCEPTION,

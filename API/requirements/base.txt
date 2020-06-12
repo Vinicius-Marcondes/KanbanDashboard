@@ -2,8 +2,9 @@ Flask==1.1.2
 Flask-RESTful==0.3.8
 flask-sqlalchemy==2.4.3
 flask-marshmallow==0.11.0
-marshmallow-sqlalchemy==0.23.1
 Flask-Migrate==2.5.3
+Flask-JWT-Extended==3.24.1
+marshmallow-sqlalchemy==0.23.1
 psycopg2-binary==2.8.5
 aniso8601==3.0.0
 click==6.7
@@ -16,3 +17,4 @@ six==1.11.0
 Werkzeug==0.16.0
 wheel==0.24.0
 bcrypt==3.1.7
+PyJWT==1.7.1

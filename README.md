@@ -32,7 +32,7 @@ Returns:
 ### Deleting data from db 
 Pass to the API the ID of the item you want to delete
 ```python3
->>> get("project_url/api/delete/id").json()
+>>> delete("project_url/admin/api/users/id").json()
 ```
 Returns:
 ```json
@@ -57,7 +57,7 @@ Returns:
 Query the json with the updates passing the id of the item you want to update. If you are updating a password you need to confirm it
 ```python3
 >>> payload = {"name":"your_new_beautiful_name","password": "super_secret_password", "confirm_password": "super_secret_password"}
->>> post("project_url/api/update/id",json=payload).json()
+>>> put("project_url/admin/api/users/id",json=payload).json()
 ```
 returns:
 ```json

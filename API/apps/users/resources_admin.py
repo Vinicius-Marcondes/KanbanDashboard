@@ -1,4 +1,5 @@
 from flask import request, current_app
+from bcrypt import hashpw, gensalt
 from marshmallow import ValidationError
 import re
 from sqlalchemy.exc import NoReferencedColumnError, IntegrityError
@@ -30,7 +31,7 @@ class AdminUserPageList(Resource):
                 page_size = int(request.args.get('page_size'))
 
         try:
-            users = User.query.paginate(page_id, page_size)
+            users = User.query.paginate(page_id, page_size).encode('utf-8')
 
         except NoReferencedColumnError as err:
             return resp_exception('Users', description=err.__str__())
@@ -56,6 +57,7 @@ class AdminUserResource(Resource):
 
         try:
             query = get_user_by_id(user_id)
+            query.update(query.password.encode('utf-8'))
             result = UserSchema(many=True).dump(query)
 
         except Exception:
@@ -69,30 +71,44 @@ class AdminUserResource(Resource):
         update_schema = UserUpdateSchema()
         req_data = request.json or None
         email = None
+        password_hashed = None
 
         if req_data is None:
             return resp_invalid_data('Users', {}, msg=MSG_NO_DATA)
 
-        confirm_password = req_data.pop('confirm_password')
+        if req_data.get('password'):
+            password = req_data.get('password')
+            confirm_password = req_data.pop('confirm_password')
 
-        if not check_password_in_singup(req_data.get('password'), confirm_password):
-            errors = {'password': MSG_PASSWORD_DIDNT_MATCH}
-            return resp_invalid_data('Users', errors)
+            if not check_password_in_singup(password, confirm_password):
+                errors = {'password': MSG_PASSWORD_DIDNT_MATCH}
+                return resp_invalid_data('Users', errors)
+
+            password_hashed = hashpw(password.encode('utf-8'), gensalt(12))
 
         try:
             query = get_user_by_id(user_id)
             user = schema.dump(query)
             data = update_schema.load(req_data)
+            if req_data.get('password'):
+                data.update({'password': password_hashed})
+
+        except Exception as err:
+            return resp_does_not_exist('Users', description=err.__str__())
 
         except IntegrityError:
             return resp_invalid_data('Users', IntegrityError.orig)
 
+        except ValidationError as err:
+            return err.__dict__
+
         email = data.get('email', None)
 
-        if email and exists_email_in_user(email, user):
-            return resp_ok('Users', {'email': MSG_ALREADY_EXISTS.format('user')})
+        if email and exists_email_in_user(email):
+            return resp_ok('Users', MSG_ALREADY_EXISTS.format('email'))
+
         try:
-            query.update(request.json)
+            query.update(data)
             current_app.db.session.commit()
 
         except IntegrityError as err:

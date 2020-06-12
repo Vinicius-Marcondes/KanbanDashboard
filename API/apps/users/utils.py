@@ -28,17 +28,10 @@ def get_user_by_id(user_id: int):
     :return: obj
     """
 
-    try:
-        user = User.query.filter(User.id == user_id)
-        result = UserSchema(many=True).dump(user)
-        if not result:
-            raise Exception
-
-    except ValidationError as err:
-        return err.__dict__
-
-    except Exception as err:
-        return resp_exception('Users', description=err.__str__())
+    user = User.query.filter(User.id == user_id)
+    result = UserSchema(many=True).dump(user)
+    if not result:
+        raise Exception("User")
 
     return user
 

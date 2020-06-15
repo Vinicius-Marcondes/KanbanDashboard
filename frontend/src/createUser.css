@@ -1,0 +1,313 @@
+*
+{
+    /*Config Layout*/
+    margin:0;
+    padding:0;
+
+    /*Config Design*/
+    font-family: Poppins,sans-serif;
+}
+
+body
+{
+    /*Config layout*/
+    display:grid;
+    min-height: 100vh;
+    grid-template-columns: 50% 50%;
+    grid-template-rows:60px 1fr 60px;
+    grid-template-areas:
+    'cabecalho cabecalho'
+    'conteudo conteudo'
+    'conteudo conteudo';
+
+    /*Config design*/
+    background-color: rgba(196, 196, 196, 0.77);
+}
+
+header
+{
+    /*Config layout*/
+    grid-area: cabecalho;
+    display:flex;
+    flex-direction:row;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+
+    /*Config design*/
+    background: radial-gradient(circle, rgba(75,30,190,1) 0%, rgba(91,57,196,1) 49%, rgba(196,0,255,1) 95%);
+    box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.77);
+}
+
+/*Configuration at Top Menu*/
+
+header > div:nth-child(1)
+{
+    /*Config Layout*/
+    Order:0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    flex-basis: 120px;
+}
+
+div > img
+{
+    height: 100%;
+}
+
+header > div:nth-child(2)
+{
+    /*Config Layout*/
+    Order:1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+
+    /*Config Display*/
+    color:white;
+}
+
+header > nav:nth-child(3)
+{
+    /*Config Layout*/
+    Order:2;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    flex-basis: 200px;
+}
+
+nav > ul:nth-child(1)
+{
+    /*Config Layout*/
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+
+    /*Config Design*/
+    list-style-type: none;
+    font-weight: bold;
+}
+
+ul li
+{
+    /*Config Layout*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 80px;
+}
+
+li a
+{
+    /*Config Layout*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width:100%;
+
+    /*Config Design*/
+    color:white;
+    text-decoration: none;
+    transition: background-color 1s;
+}
+
+a:hover
+{
+    /*Config Design*/
+    background-color: white;
+    color:black;
+}
+
+/*Configuration at main*/
+
+main
+{
+    /*Config Layout*/
+    grid-area:conteudo;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items: center;
+    margin:30px 0px;
+
+    /*Config Design*/
+    /*border:solid 2px black;*/
+}
+
+main > section:nth-child(1)
+{
+    /*Config Layout*/
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 450px;
+    width: 650px;
+
+    /*Config Design*/
+    /*border:solid 2px black;*/
+    background-color: white;
+    box-shadow:0px 0px 10px rgba(0,0,0,0.61);
+}
+
+section > form:nth-child(1)
+{
+    /*Config Layout*/
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+
+    /*Config Design*/
+    /*border:solid 2px #fff000;*/
+}
+
+.imageUser
+{
+    /*Config Layout*/
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 45%;
+
+    /*Config Design*/
+    /*border:solid 2px #ff0013;*/
+}
+
+.imageUser img
+{
+    /*Config Layout*/
+    height: 40%;
+}
+
+#files
+{
+    /*Config Layout*/
+    display: none;
+}
+
+.imageUser label, .inputs button
+{
+    /*Config Layout*/
+    padding: 10px 15px;
+    margin:10px;
+
+    /*Config Design*/
+    background-color: rgba(0,0,0,0.7);
+    outline: none;
+    border:none;
+    border-radius:20px;
+    color:white;
+    font-size:0.9em;
+    transition: background-color 1s;
+}
+
+.imageUser label:hover, .inputs button:hover
+{
+    /*Config Design*/
+    background-color: #C400FF;
+}
+
+.bar
+{
+    /*Config Layout*/
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 80%;
+    width: 1%;
+
+    /*Config Design*/
+    background-color: #817876;
+    border-radius: 20px;
+}
+
+.inputs
+{
+    /*Config Layout*/
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 55%;
+
+    /*Config Design*/
+    /*border:solid 2px green;*/
+}
+
+.inputs input
+{
+    /*Config Layout*/
+    margin-top:10px;
+    height:35px;
+    padding-left: 18%;
+    width: 60%;
+
+    /*Config Design*/
+
+    font-size:0.8em;
+    color: #9a9a9a;
+    border-radius: 17px;
+    border-color:transparent;
+    background-color: rgba(145, 145, 145, 0.3);
+    background-repeat: no-repeat;
+    background-size: 18px;
+    background-position-x: 20px;
+    background-position-y: 9px;
+    transition: background-position 0.5s;
+}
+
+.inputs > input:nth-child(1)
+{
+    /*Config Design*/
+    background-image:url(../images/icons/name.png);
+}
+
+.inputs > input:nth-child(2)
+{
+    /*Config Design*/
+    background-image:url(../images/icons/Username.png);
+}
+
+.inputs > input:nth-child(3)
+{
+    /*Config Design*/
+    background-image:url(../images/icons/email.png);
+}
+
+.inputs > input:nth-child(4)
+{
+    /*Config Design*/
+    background-image:url(../images/icons/security.png);
+}
+
+.inputs > input:nth-child(5)
+{
+    /*Config Design*/
+    background-image:url(../images/icons/cpf.png);
+}
+
+.inputs input:active,
+.inputs input:focus
+{
+    /*Config Design*/
+    outline: none;
+    background-position: 10px 9px;
+    filter: invert(59%) sepia(48%) saturate(459%) hue-rotate(65deg) brightness(102%) contrast(92%);
+}
+

@@ -6,25 +6,28 @@
     <link rel="stylesheet" href="src/admin.css">
 </head>
 <body onload="loadUsers()">
-    <header>
-        <div class="logo">
-            <img src="images/2.png" alt="logo">
-        </div>
-        <div class="title">
-            <h1>Administration</h1>
-        </div>
-        <div class="home">
-            <a href="https://">Home</a>
-        </div>
-        <div class="exit">
-            <a href="https://">Exit</a>
-        </div>
-    </header>
+<header>
+    <div>
+        <img src="images/2.png" alt="Logo-Kanban">
+    </div>
+    <div>
+        <h1>Administration</h1>
+    </div>
+    <nav>
+        <ul>
+            <li>
+                <a href="">Home</a>
+            </li>
+            <li>
+                <a href="">Exit</a>
+            </li>
+        </ul>
+    </nav>
+</header>
     <section>
         <h1 class="User">Manage Users</h1>
         <div class="buttons">
             <button class="create" id="create" href="#">Create User</button>
-            <button class="refresh" id="refresh">Refresh</button>
         </div>
         <table rules="groups">
             <thead>

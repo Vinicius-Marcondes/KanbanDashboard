@@ -75,7 +75,7 @@ Using default page size:
 >>> get("project_url/admin/api/users/page/1").json()
 ```
 Returns:
-```json
+```
 {
   "data": [
     {user01_data},
@@ -102,7 +102,7 @@ If you have more users than the page size you can change the number of the page 
 >>> get("project_url/admin/api/users/page/page_number?page_size=2").json()
 ```
 Returns:
-```json
+```
 {
   "data": [
     {user01_data},

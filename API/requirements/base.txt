@@ -8,7 +8,7 @@ psycopg2-binary==2.8.5
 aniso8601==3.0.0
 click==6.7
 itsdangerous==0.24
-Jinja2==2.11
+Jinja2==2.11.3
 MarkupSafe==1.0
 python-dotenv==0.8.2
 pytz==2018.4
